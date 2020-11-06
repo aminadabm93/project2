@@ -10,10 +10,13 @@ We also used eslint and eslint-congig-google.
 
 ## Contributing
 
-Contributers includes Jack Murphy, Jonathan Thibeaux, Aminidab Morales, and Ranuel Suarez.
-
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
+## Authors and ackowledgement
+
+Contributers includes Jack Murphy, Jonathan Thibeaux, Aminidab Morales, and Ranuel Suarez.
+
+## License
 
