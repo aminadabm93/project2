@@ -20,7 +20,7 @@ $(document).ready(function() {
             profiles.append($('<a class="dropdown-item" data-index="'+profile.id+'"href="#">'+profile.name+'</a>'));
         });
 
-        //add event listener for any saved profile 
+        //add event listener for to load a sved profile
         $(".dropdown-item").on("click",function(){
             $.get("api/boxSim/"+$(this).attr("data-index")).then(function(data){
                 //set values of form to that of data
@@ -30,20 +30,22 @@ $(document).ready(function() {
                 hexInput.val(data.hexColor);
                 xInput.val(data.xRotation);
                 yInput.val(data.yRotation);
+                main();
             });
         });
     });
 
     //post once profile is saved w/ unique name
     function sendProfile(data){
+        console.log(typeof(data.yRotation));
         $.post("/api/boxSim",{
             name:data.name,
             length: data.length,
             width: data.width,
             height: data.height,
             hexColor: data.hexColor,
-            yRotation: data.yRotation,
-            xRotation: data.xRotation
+            yRotation: parseFloat(data.yRotation),
+            xRotation: parseFloat(data.xRotation)
         })
         .then(function(data){
             alert("You have successfully saved the profile: "+data.name);
@@ -60,8 +62,8 @@ $(document).ready(function() {
             width: widthInput.val().trim(),
             height: heightInput.val().trim(),
             hexColor: hexInput.val().trim(),
-            yRotation: yInput.val(),
-            xRotation: xInput.val()
+            yRotation: parseFloat(yInput.val()),
+            xRotation: parseFloat(xInput.val())
         }
         if(!profileData.name||!profileData.length||!profileData.width||!profileData.height||!profileData.hexColor||!profileData.xRotation||!profileData.yRotation){
             alert("Please enter all parameters before submitting");

@@ -8,7 +8,7 @@ passport.use(new LocalStrategy(
     // Our user will sign in using an email, rather than a "username"
     {
       usernameField: 'email',
-    },
+    },  
     function(email, password, done) {
     // When a user tries to sign in this code runs
       db.User.findOne({
@@ -29,7 +29,9 @@ passport.use(new LocalStrategy(
           });
         }
         // If none of the above, return the user
-        return done(null, dbUser);
+        return done(null, dbUser, {
+          message: 'User not found.'
+        });
       });
     },
 ));
